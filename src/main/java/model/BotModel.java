@@ -7,9 +7,9 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 public class BotModel extends TelegramLongPollingBot {
 
-    private static final String BOT_USERNAME = "testbot";
-    private static final String BOT_TOKEN = "";
-
+    private String BOT_INFO;
+    private String botUsername;
+    private String botToken;
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -22,7 +22,7 @@ public class BotModel extends TelegramLongPollingBot {
         if (inputText.startsWith("/start")) {
             SendMessage message = new SendMessage()
                     .setChatId(chatId)
-                    .setText("Hello. This is start message");
+                    .setText(BOT_INFO);
             try {
                 execute(message);
             } catch (TelegramApiException e) {
@@ -33,11 +33,27 @@ public class BotModel extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return BOT_USERNAME;
+        return botUsername;
     }
 
     @Override
     public String getBotToken() {
-        return BOT_TOKEN;
+        return botToken;
+    }
+
+    public void setBotUsername(String botUsername) {
+        this.botUsername = botUsername;
+    }
+
+    public void setBotToken(String botToken) {
+        this.botToken = botToken;
+    }
+
+    public String getBOT_INFO() {
+        return BOT_INFO;
+    }
+
+    public void setBOT_INFO(String BOT_INFO) {
+        this.BOT_INFO = BOT_INFO;
     }
 }
